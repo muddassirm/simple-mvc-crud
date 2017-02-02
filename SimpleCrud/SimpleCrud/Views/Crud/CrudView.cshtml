@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "CRUD App";
+}
+
+<div id="Container"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Container').jtable({
+            title: 'Patient List',
+            paging: false,
+            actions: {
+                listAction: '@Url.Action("GetAllRecords")',
+                updateAction: '@Url.Action("Update")',
+                createAction: '@Url.Action("Insert")',
+                deleteAction: '@Url.Action("Delete")'
+            },
+            fields: {
+                Id: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                PatientName: {
+                    title: 'Patient Name',
+                    width: '23%'
+                },
+                Height: {
+                    title: 'Height(in cm)',
+                },
+                DOB: {
+                    title: 'Birth date',
+                    width: '15%',
+                    type: 'date',
+                    displayFormat: 'yy-mm-dd'
+                }
+            }
+        });
+        //Load patient list from server
+        $('#Container').jtable('load');
+    });
+</script>
